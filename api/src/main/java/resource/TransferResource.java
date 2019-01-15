@@ -7,7 +7,7 @@ import spark.Route;
 
 public class TransferResource {
 
-    public static Route serveLoginPage = (Request request, Response response) -> {
+    public static Route transfer = (Request request, Response response) -> {
         ObjectMapper objectMapper = new ObjectMapper();
         TransferVO transferVO = objectMapper.readValue(request.body(), TransferVO.class);
         return transferVO;
