@@ -8,7 +8,6 @@ import db.AccountDataBaseSingleton;
 public class Job implements Runnable {
 
     public void run() {
-        System.out.println("teste");
         AccountDataBase accountDataBase = AccountDataBaseSingleton.get();
         TransactionCache transactionCache = TransactionCacheSingleton.get();
 

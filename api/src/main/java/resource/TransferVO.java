@@ -1,24 +1,41 @@
 package resource;
 
-public class TransferVO {
+import service.Transfer;
 
-    private String accountName;
+import java.math.BigDecimal;
 
-    private Double value;
+public class TransferVO implements Transfer {
 
-    public String getAccountName() {
-        return accountName;
+    private String sourceAcount;
+
+    private String destinationAccount;
+
+    private BigDecimal value;
+
+    @Override
+    public String getSourceAcount() {
+        return sourceAcount;
     }
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
+    public void setSourceAcount(String sourceAcount) {
+        this.sourceAcount = sourceAcount;
     }
 
-    public Double getValue() {
+    @Override
+    public BigDecimal getValue() {
         return value;
     }
 
-    public void setValue(Double value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
+    }
+
+    @Override
+    public String getDestinationAccount() {
+        return destinationAccount;
+    }
+
+    public void setDestinationAccount(String destinationAccount) {
+        this.destinationAccount = destinationAccount;
     }
 }

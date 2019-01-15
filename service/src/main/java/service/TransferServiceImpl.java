@@ -8,19 +8,19 @@ import exceptions.NoFundsException;
 public class TransferServiceImpl implements TransferService {
 
     @Override
-    public void withdraw(TransferTransaction transferTransactionVO) throws NoFundsException {
+    public void transfer(Transfer transfer) throws NoFundsException {
 
-        withDrawFromAccount(transferTransactionVO);
+        withDrawFromAccount(transfer);
 
-        depositToAccount(transferTransactionVO);
+        depositToAccount(transfer);
     }
 
-    private void depositToAccount(TransferTransaction transferTransactionVO) {
-        TransactionCacheSingleton.get().save(new Transaction(transferTransactionVO.to(),transferTransactionVO.value()));
+    private void depositToAccount(Transfer transfer) {
+        TransactionCacheSingleton.get().save(new Transaction(transfer.getDestinationAccount(), transfer.getValue()));
     }
 
-    private void withDrawFromAccount(TransferTransaction transferTransactionVO) throws NoFundsException {
-        AccountDataBaseSingleton.get().withDraw(new Transaction(transferTransactionVO.from(),
-                transferTransactionVO.value()));
+    private void withDrawFromAccount(Transfer transfer) throws NoFundsException {
+        AccountDataBaseSingleton.get().withDraw(new Transaction(transfer.getSourceAcount(),
+                transfer.getValue()));
     }
 }

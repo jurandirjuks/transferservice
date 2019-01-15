@@ -20,8 +20,19 @@ public class AccountDataBase {
 
     private Map<String, List<BigDecimal>> database = new ConcurrentHashMap();
 
-    public BigDecimal getBalance(String jura) {
-        return database.getOrDefault(jura, Collections.emptyList())
+    public AccountDataBase() {
+        this.database = new ConcurrentHashMap();
+        final LinkedList<BigDecimal> bob = new LinkedList<>();
+        final LinkedList<BigDecimal> joe = new LinkedList<>();
+        bob.add(BigDecimal.valueOf(10));
+        joe.add(BigDecimal.valueOf(100));
+
+        database.put("joe",joe );
+        database.put("bob", bob);
+    }
+
+    public BigDecimal getBalance(String accountName) {
+        return database.getOrDefault(accountName, Collections.emptyList())
                 .stream()
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
