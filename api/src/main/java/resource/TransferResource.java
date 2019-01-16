@@ -14,12 +14,13 @@ public class TransferResource {
         TransferService service = new TransferServiceImpl();
         try {
             service.transfer(transferVO);
-
+            response.status(201);
         } catch (Exception e) {
             response.status(422);
+            response.body(e.getMessage());
             return e.getMessage();
         }
-        return transferVO;
+        return "";
     };
 
     private static TransferVO getTransferVO(Request request) throws java.io.IOException {
